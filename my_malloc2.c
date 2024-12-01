@@ -30,7 +30,7 @@ block* heap_allocate(block* curr, size_t bytes) {
     if (curr->size > bytes + META_SIZE) {
         size_t new_size = curr->size - bytes - META_SIZE;
         
-        block *new_block = curr + bytes + META_SIZE; // Tricky
+        block *new_block = (block*) ((char*) curr + bytes + META_SIZE); // Tricky
         new_block->size = new_size;
         new_block->is_free = true;
         new_block->start = new_block + 1;
